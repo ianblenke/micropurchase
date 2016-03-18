@@ -7,22 +7,16 @@ export RAILS_ENV="${RAILS_ENV:-development}"
 export DATABASE_PROTO="${DATABASE_PROTO:-postgresql}"
 
 export DATABASE_USER="${DATABASE_USER:-${POSTGRES_USER}}"
-export DATABASE_USER="${DATABASE_USER:-$(echo $VCAP_SERVICES | jq .rds[0].credentials.username)}"
 export DATABASE_USER="${DATABASE_USER:-postgres}"
 
 export DATABASE_PASS="${DATABASE_PASS:-${POSTGRES_PASSWORD}}"
-export DATABASE_PASS="${DATABASE_PASS:-$(echo $VCAP_SERVICES | jq .rds[0].credentials.password)}"
 export DATABASE_PASS="${DATABASE_PASS:-postgres}"
 
 export DATABASE_HOST="${DATABASE_HOST:-${POSTGRES_HOST}}"
-export DATABASE_HOST="${DATABASE_HOST:-$(echo ${VCAP_SERVICES} | jq .rds[0].credentials.hostname)}"
-export DATABASE_HOST="${DATABASE_HOST:-$(ip route show 0.0.0.0/0 | awk '{print $3}')}"
-export DATABASE_HOST="${DATABASE_HOST:-localhost}"
+export DATABASE_HOST="${DATABASE_HOST:-postgresql}"
 
-export DATABASE_PORT="${DATABASE_PORT:-$(echo ${VCAP_SERVICES} | jq .rds[0].credentials.port)}"
 export DATABASE_PORT="${DATABASE_PORT:-5432}"
 
-export DATABASE_NAME="${DATABASE_NAME:-$(echo ${VCAP_SERVICES} | jq .rds[0].credentials.name)}"
 export DATABASE_NAME="${DATABASE_NAME:-micropayments}"
 
 export DATABASE_ARGS="${DATABASE_ARGS:-pool=5}"
